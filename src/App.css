@@ -1,0 +1,467 @@
+
+
+
+html, body {
+  margin: 0 !important;   
+  padding: 0 !important;  
+  width: 100vw;           
+  overflow-x: hidden;     
+  background-color: #b0b8bc;
+}
+
+#root {
+  width: 100%;            
+}
+
+.dashboardContainer {
+  width: 100%; 
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 70px); 
+}
+
+
+.navbar {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  padding: 1rem 5%; 
+  background: #f8faf9;
+  border-bottom: 1px solid #ddd;
+  width: 100%;
+  box-sizing: border-box;
+  color: #333;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: row; 
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap; 
+}
+
+
+.userInfo span {
+  font-size: 1rem;
+  white-space: nowrap; 
+}
+
+.logout-btn {
+  padding: 10px 20px;
+  background-color: #d93025;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+
+.dashboardContent {
+  padding: 20px;
+  text-align: center;
+}
+
+.tilesGrid {
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+  gap: 20px;
+  max-width: 800px;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.tile {
+  background-color: #333;
+  color: white;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.tileIcon{
+  font-size: xx-large;
+}
+
+@media (min-width: 1200px) {
+  .navbar {
+    padding: 1.2rem 10%; 
+  }
+  .userInfo span {
+    font-size: 1.2rem;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .navbar {
+    padding: 0.8rem 1rem; 
+  }
+
+  .userInfo {
+    gap: 10px; 
+  }
+
+  .userInfo span {
+    font-size: 13px; 
+  }
+
+  .logout-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 20px; 
+  box-sizing: border-box;
+}
+
+
+.formContainer {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  width: 350px;
+  max-width: 400px; 
+  color: black;
+  box-sizing: border-box;
+}
+
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.fieldGroup {
+  margin-bottom: 12px; 
+  display: flex;
+  flex-direction: column;
+}
+
+.form h2 {
+  margin-bottom: 20px;
+  color: #033452;
+  text-align: center;
+  font-size: 24px;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 5px; 
+  color: #333;
+}
+
+
+.form input {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  color: black;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.form input:focus {
+  outline: none;
+  border-color: #0C67A0;
+  background-color: #fff;
+}
+
+
+.fieldGroup div[style*="relative"] button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%); 
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  height: auto;
+  width: auto;
+  font-size: 18px;
+}
+
+
+.errorText {
+  color: #d93025;
+  font-size: 11px;
+  margin-top: 4px;
+  font-weight: bold;
+  min-height: 14px;
+}
+
+
+.form button[type="submit"] {
+  padding: 14px;
+  background-color: #033452;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.form button:hover:not(:disabled) {
+  background-color: #054a75;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.form button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+
+.form p {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.form a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.todopageContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+
+.todo-card {
+  width: 100%;
+  max-width: 500px; 
+  margin-bottom: 30px;
+}
+
+.todoinputWrapper {
+  margin-bottom: 20px;
+}
+
+/* Filters Styling */
+.todoFilters {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+}
+
+.filter-btn {
+  background: none;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #666;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+
+.filter-btn.active {
+  color: #033452;
+  border-bottom: 2px solid #033452;
+}
+
+/* List Area */
+.todolistContainer {
+  width: 100%;
+  max-width: 500px;
+}
+
+.emptyMsg {
+  text-align: center;
+  color: #232222;
+  margin-top: 20px;
+}
+
+.todopageContent input{
+  padding: 10px 20px;
+  background-color: #cccccc;
+  color: rgb(9, 9, 9);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.formContainer h2{
+  margin-top: -3px;
+}
+
+
+.todolistContainer {
+  width: 100%;
+  max-width: 500px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.todoItem {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;           
+  background: white;
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.itemLeft {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex: 1; 
+  margin-right: 20px; 
+}
+
+.todoCheckbox {
+  width: 22px;  
+  height: 22px;
+  cursor: pointer;
+  accent-color: #033452;
+  flex-shrink: 0; 
+}
+
+.taskText {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.4;
+  word-break: break-word; 
+}
+
+.todoItem.completed .taskText {
+  text-decoration: line-through;
+  color: #888;
+}
+
+
+.itemActions {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0; 
+}
+
+.actionBtn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.editBtn {
+  background-color: #0C67A0;
+  color: white;
+}
+
+.deleteBtn {
+  background-color: #d93025;
+  color: white;
+}
+.buttonGroup {
+  display: flex;
+  gap: 15px; 
+  align-items: center;
+}
+
+
+.actionBtn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.1);
+}
+
+@media (max-width: 480px) {
+  .todoItem {
+    padding: 12px;
+    flex-direction: column; 
+    gap: 10px;
+    align-items: flex-start;
+  }
+  
+  .itemActions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+.deleteBtn.confirming {
+  background-color: #ff9800; 
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.editBtn:disabled {
+  background-color: #ccc; 
+  cursor: not-allowed;    
+  transform: none;        
+  opacity: 0.6;
+}
+
+.backButtonArea {
+  max-width: 800px; 
+  margin: 20px auto 0 10px;
+  padding: 0 20px;
+}
+
+.backBtn {
+  background: black;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.2s;
+}
+
+.backBtn:hover {
+  color: #007bff; 
+  text-decoration: underline;
+}
