@@ -13,43 +13,40 @@ const navigate = useNavigate();
     <div className="dashboardContainer">
       <Navbar />
       <div className="backButtonArea">
-        <button 
-          className="backBtn" 
-          onClick={() => navigate('/dashboard')}>← Back to Dashboard
-        </button>
+        <Button onClick={() => navigate('/dashboard')}>← Back to Dashboard</Button>
       </div>
       <div className="todopageContent">
         <div className="formContainer todo-card">
-          <h2>{todo.ui.editId ? "Edit Task" : "Create a Task"}</h2>
+          <h2>{todo.render.editId ? "Edit Task" : "Create a Task"}</h2>
           <div className="todoinputWrapper">
             <Input
               label="Task Description"
               name="task"
               type="text"
-              value={todo.ui.input} 
-              onChange={(e) => todo.updateUi('input', e.target.value)} 
-              required={false}
+              value={todo.render.input} 
+              onChange={(e) => todo.updaterender('input', e.target.value)} 
+              reqrenderred={false}
               onKeyDown={todo.handleKeyDown}
             />
             <div className="buttonGroup">
               <Button onClick={todo.handleSave}>
-                {todo.ui.editId ? "Update Task" : "Add Task"}
+                {todo.render.editId ? "Update Task" : "Add Task"}
               </Button>
-              {todo.ui.editId && (
-                <button className="cancel-link" onClick={todo.clearEdit}>Cancel</button>
+              {todo.render.editId && (
+                <Button className="cancel-link" onClick={todo.clearEdit}>Cancel</Button>
               )}
             </div>
           </div>
 
           <div className="todoFilters">
             {['all', 'incomplete', 'complete'].map((f) => (
-              <button
+              <Button
                 key={f}
-                className={todo.ui.filter === f ? 'filter-btn active' : 'filter-btn'}
-                onClick={() => todo.updateUi('filter', f)} 
+                className={todo.render.filter === f ? 'filter-btn active' : 'filter-btn'}
+                onClick={() => todo.updaterender('filter', f)} 
               >
                 {f.charAt(0).toUpperCase() + f.slice(1)}
-              </button>
+              </Button>
             ))}
           </div>
         </div>
@@ -69,13 +66,13 @@ const navigate = useNavigate();
                 </div>
 
                 <div className="itemActions">
-                  <button
+                  <Button
                     className="actionBtn editBtn"
                     onClick={() => todo.handleEdit(t)}
-                    disabled={t.isCompleted}>Edit</button>
-                  <button
+                    disabled={t.isCompleted}>Edit</Button>
+                  <Button
                     className="actionBtn deleteBtn"
-                    onClick={() => todo.handleDelete(t.id, t.text)}>Delete</button>
+                    onClick={() => todo.handleDelete(t.id, t.text)}>Delete</Button>
                 </div>
               </div>
             ))

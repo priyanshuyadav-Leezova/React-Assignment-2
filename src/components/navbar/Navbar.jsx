@@ -1,4 +1,5 @@
 import { useAuth } from '../../auth/AuthContext';
+import { Button } from '../../components';
 import '../../App.css';
 
 const Navbar = () => {
@@ -10,9 +11,7 @@ const Navbar = () => {
         <span className="userName">Welcome, <strong>{user?.name}</strong></span>
         <span className="userEmail">{user?.email}</span>
       </div>
-      <button className="logout-btn" onClick={logout}>
-        Logout
-      </button>
+      <Button onClick={logout} >LogOut</Button>
     </nav>
   );
 };

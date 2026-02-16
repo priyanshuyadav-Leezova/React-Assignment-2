@@ -1,4 +1,5 @@
 import { useReducer, useEffect, useState } from 'react';
+
 import { storageService } from '../storage/storage';
 
 const todoReducer = (state, action) => {
@@ -16,7 +17,7 @@ export const useTodo = (userEmail) => {
     return storageService.getTasks().filter(task => task.userId === userEmail);
   });
 
-  const [ui, setUi] = useState({
+  const [render, setrender] = useState({
     input: "",
     editId: null,
     filter: "all"
@@ -29,57 +30,57 @@ export const useTodo = (userEmail) => {
   };
 
   const handleSave = () => {
-    if (!ui.input.trim()) return;
+    if (!render.input.trim()) return;
 
-    if (ui.editId) {
-      const action = { type: 'UPDATE_TASK', payload: { id: ui.editId, text: ui.input } };
-      const nextTasks = tasks.map(t => t.id === ui.editId ? { ...t, text: ui.input } : t);
+    if (render.editId) {
+      const action = { type: 'UPDATE_TASK', payload: { id: render.editId, text: render.input } };
+      const nextTasks = tasks.map(t => t.id === render.editId ? { ...t, text: render.input } : t);
       sync(action, nextTasks);
     } else {
-      const newTask = { id: Date.now(), text: ui.input, isCompleted: false, userId: userEmail };
+      const newTask = { id: Date.now(), text: render.input, isCompleted: false, userId: userEmail };
       sync({ type: 'ADD_TASK', payload: newTask }, [...tasks, newTask]);
     }
-    setUi(prev => ({ ...prev, input: "", editId: null }));
+    setrender(prev => ({ ...prev, input: "", editId: null }));
   };
 
   const toggleTask = (id) => {
     const nextTasks = tasks.map(t => t.id === id ? { ...t, isCompleted: !t.isCompleted } : t);
-    const resetEdit = ui.editId === id ? { input: "", editId: null } : {};
+    const resetEdit = render.editId === id ? { input: "", editId: null } : {};
     sync({ type: 'TOGGLE_TASK', payload: id }, nextTasks);
-    if (ui.editId === id) setUi(prev => ({ ...prev, ...resetEdit }));
+    if (render.editId === id) setrender(prev => ({ ...prev, ...resetEdit }));
   };
 
   const handleDelete = (id, text) => {
     if (window.confirm(`Delete "${text}"?`)) {
       sync({ type: 'DELETE_TASK', payload: id }, tasks.filter(t => t.id !== id));
-      if (ui.editId === id) setUi(prev => ({ ...prev, input: "", editId: null }));
+      if (render.editId === id) setrender(prev => ({ ...prev, input: "", editId: null }));
     }
   };
 
-  const handleEdit = (t) => setUi(prev => ({ ...prev, input: t.text, editId: t.id }));
+  const handleEdit = (t) => setrender(prev => ({ ...prev, input: t.text, editId: t.id }));
 
-  const updateUi = (key, value) => setUi(prev => ({ ...prev, [key]: value }));
+  const updaterender = (key, value) => setrender(prev => ({ ...prev, [key]: value }));
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') handleSave();
-    if (e.key === 'Escape') setUi(prev => ({ ...prev, input: "", editId: null }));
+    if (e.key === 'Escape') setrender(prev => ({ ...prev, input: "", editId: null }));
   };
 
   const filteredTasks = tasks.filter(t => {
-    if (ui.filter === 'incomplete') return !t.isCompleted;
-    if (ui.filter === 'complete') return t.isCompleted;
+    if (render.filter === 'incomplete') return !t.isCompleted;
+    if (render.filter === 'complete') return t.isCompleted;
     return true;
   });
 
   return {
     tasks: filteredTasks,
-    ui,
-    updateUi,
+    render,
+    updaterender,
     handleSave,
     handleEdit,
     handleDelete,
     handleKeyDown,
     toggleTask,
-    clearEdit: () => setUi(prev => ({ ...prev, input: "", editId: null }))
+    clearEdit: () => setrender(prev => ({ ...prev, input: "", editId: null }))
   };
 };
